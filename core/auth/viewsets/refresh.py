@@ -6,6 +6,7 @@ from rest_framework_simplejwt.views import TokenRefreshView
 
 
 class RefreshViewSet(viewsets.ViewSet,TokenRefreshView):
+    #token = TokenRefreshView()
     permission_classes = [AllowAny,]
     http_method_names = ['post']
     def create(self,request,*args,**kwargs):

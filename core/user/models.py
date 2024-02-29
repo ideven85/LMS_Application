@@ -17,13 +17,13 @@ from core.abstract.models import AbstractManager, AbstractModel
 # Create your models here.
 
 class UserManager(BaseUserManager,AbstractManager):
-    key = pbkdf2_hmac(
-        hash_name='sha1',
-        password=b"somekeyvalue",
-        salt=b"somekeyvalue",
-        iterations=12345,
-        dklen=32
-    )
+    # key = pbkdf2_hmac(
+    #     hash_name='sha1',
+    #     password=b"somekeyvalue",
+    #     salt=b"somekeyvalue",
+    #     iterations=12345,
+    #     dklen=32
+    # )
 
     def create_user(self,username,email,password=None,**extra_fields):
         if not username:
@@ -61,6 +61,8 @@ class User(AbstractBaseUser, PermissionsMixin,AbstractModel):
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
 
+    posts_liked = models.ManyToManyField(to="core_post.Post", related_name="liked_by")
+
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username']
     objects = UserManager()
@@ -69,6 +71,6 @@ class User(AbstractBaseUser, PermissionsMixin,AbstractModel):
         return self.first_name + ' ' + self.last_name
 
     @property
-    def full_name(self):
+    def name(self):
         return f'{self.first_name} {self.last_name}'
 
