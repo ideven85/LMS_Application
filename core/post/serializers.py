@@ -15,7 +15,7 @@ class PostSerializer(AbstractSerializer):
         request = self.context.get('request',None)
         if not request or request.user.is_anonymous:
             return False
-        return request.user.has_liked(instance)
+        return request.user.has_liked_post(instance)
 
     def get_likes_count(self,instance):
         return instance.liked_by.count()
@@ -39,7 +39,7 @@ class PostSerializer(AbstractSerializer):
         n = representation['author']
         # for key, value in n.items():
         #     print(key,value)
-        representation['author'] = n['first_name'] + ' ' + n['last_name'] # Modified Representation of author to just Name
+        #representation['author'] = n['first_name'] + ' ' + n['last_name'] # Modified Representation of author to just Name
         #representation['author'] = representation['author']['first_name'] + ' ' + representation['author']['last_name']
         return representation
     def update(self, instance, validated_data):
