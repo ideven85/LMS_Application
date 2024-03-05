@@ -11,6 +11,7 @@ class RefreshViewSet(viewsets.ViewSet,TokenRefreshView):
     http_method_names = ['post']
     def create(self,request,*args,**kwargs):
         serializer = self.get_serializer(data=request.data)
+    
         try:
             serializer.is_valid(raise_exception=True)
         except TokenError as e:
