@@ -5,7 +5,7 @@ import uuid
 
 from django.contrib.auth.base_user import AbstractBaseUser, BaseUserManager
 from django.contrib.auth.models import PermissionsMixin
-from django.core.exceptions import ObjectDoesNotExist
+from django.core.exceptions import ObjectDoesNotExist, ValidationError
 from django.db import models
 from django.http import Http404
 
@@ -40,11 +40,11 @@ class UserManager(BaseUserManager,AbstractManager):
 
     def create_superuser(self,username,email,password,**extra_fields):
         if not username:
-            raise TypeError('Users must have an username')
+            raise ValidationError('Users must have an username')
         if not email:
-            raise TypeError('Users must have an email')
+            raise ValidationError('Users must have an email')
         if not password:
-            raise TypeError('Users must have a password')
+            raise ValidationError('Users must have a password')
         user = self.create_user(username,email,password,**extra_fields)
         user.is_staff = True
         user.is_superuser = True
