@@ -11,8 +11,8 @@ class CommentManager(AbstractManager):
 
 # Create your models here.
 class Comment(AbstractModel):
-    author = models.ForeignKey(to=User, on_delete=models.CASCADE)
-    post = models.ForeignKey(to=Post, on_delete=models.CASCADE)
+    author = models.ForeignKey(to=User, on_delete=models.PROTECT)
+    post = models.ForeignKey(to=Post, on_delete=models.PROTECT)
     body = models.TextField()
     edited=models.BooleanField(default=False)
     objects = CommentManager()

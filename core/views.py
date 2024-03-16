@@ -1,6 +1,5 @@
 from django.shortcuts import render
 from django.urls import path
-from rest_framework_swagger.views import get_swagger_view
 
 
 # Create your views here.
@@ -14,5 +13,4 @@ def get_client_ip_address(request):
     return ip_addr
 
 
-schema_view = get_swagger_view(title='LMS API')
 
