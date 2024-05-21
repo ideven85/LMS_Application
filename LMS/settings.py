@@ -22,7 +22,7 @@ load_dotenv()
 # Access environment variables
 
 # To access a boolean variable, make it a conditional.
-DEBUG = os.getenv("DEBUG") == "True"
+DEBUG = False if os.getenv("DEBUG") else True
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -116,10 +116,10 @@ WSGI_APPLICATION = 'LMS.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get('DB_NAME'),
-        'USER': os.environ.get('DB_USER'),
+        'NAME': 'lms',
+        'USER': 'deven',
 
-        'PASSWORD': os.environ.get('DB_USER_PASSWORD')
+        'PASSWORD': '728000'
     }
 }
 
