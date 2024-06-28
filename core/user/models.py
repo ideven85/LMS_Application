@@ -67,8 +67,7 @@ class User(AbstractBaseUser, PermissionsMixin,AbstractModel):
     REQUIRED_FIELDS = ['username']
     objects = UserManager()
 
-    # I think I should read properly documentation..
-    # Why are we putting logic in domain layer?
+
     def like_post(self,post):
         return self.posts_liked.add(post)
 
@@ -82,5 +81,5 @@ class User(AbstractBaseUser, PermissionsMixin,AbstractModel):
 
     @property
     def name(self):
-        return f'{self.first_name} {self.last_name}'
+        return self.first_name + " " + self.last_name
 

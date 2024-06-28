@@ -1,17 +1,22 @@
-import { useState } from 'react'
+//import { useState } from 'react'
+import {Routes,Route} from "react-router-dom";
+import {Home} from "./pages/Home.jsx";
+import CourseGoal from "./pages/check.jsx";
 
 
-function getTitle(name){
-    return name;
-}
+
 function App() {
-
+const data = [
+        {"title":"Learn React", "description":"In-depth"},{"title":"Hi","description": "Hello"}]
   return (
-    <>
-        <h1>Welcome To Post Management</h1>
-        <p>Welcome {getTitle('Deven')}</p>
 
-    </>
+
+        <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/udemy" element={<CourseGoal title={data[0].title} description={data[0].description}  />} />
+
+        </Routes>
+
   )
 }
 
